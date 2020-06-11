@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="author" content="Magdalena Duma">
+    <title>Medical recommendations - generator</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+<style></style>
+
+</head>
+<body>
+    
+<div id="app">
+  <div class="contain">
+      <section class="main"> 
+        <h2>Zalecenia lekarsie - generator</h2>
+        <h3>Wybierz i wpisz zalecenia dla nowego pacjęta:</h3>
+      </section>
+      <div class="new">
+        <form @submit.prevent="addReq">
+          <table>
+            <tbody>
+
+              <!-- Choose Medicament -->
+              <tr>
+                <td> 
+                  1. Lekarstwo: <select v-model="newMed" required>
+                  <option disabled value="">Wybierz lek</option>
+                  <option>Witamina C</option>
+                  <option>Witamina D</option>
+                  <option>Apap</option>
+                  <option>Polopiryna</option>
+                  </select> 
+                </td>
+              </tr>
+
+              <!-- Choose Time -->
+              <tr>
+                <td>2. Zalecana pora podania: <select v-model="newTime" required>
+                  <option disabled value="">Godzina podania leku</option>
+                  <option>8:00 - rano</option>
+                  <option>15:00 - po południu</option>
+                  <option>22:00 - wieczorem</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- Choose Calendar -->
+              <tr>
+                <td><div id="main" class="well text-center"> 
+                  <p>3. Data rozpoczęcia leczenia: <input type="text" id="datepicker" v-model="date"></p> 
+                  </div>   
+                </td>
+              </tr>
+
+              <!-- Choose Amount of Medicament-->
+              <tr>
+                <td>4. Zalecana ilość leku: <select v-model="newAmount" required>
+                  <option disabled value="">Ilość leku</option>
+                  <option>1 tabletka</option>
+                  <option>2 tabletki</option>
+                  <option>3 tabletki</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- Choose Hospital Department-->
+              <tr>
+                <td>5. Odział: <select v-model="newDepartment" required>
+                  <option disabled value="">Oddział szpitalny</option>
+                  <option>Chirurgia</option>
+                  <option>Ortopedia</option>
+                  <option>Kardiologia</option>
+                  </select>
+                </td>
+              </tr>
+
+              <!-- Select a Patient-->
+              <tr>
+                <td>6. Imię: <input v-model="newName" placeholder="Imię" required/></td>
+              </tr>
+              <tr>
+                <td>7. Nazwisko: <input v-model="newSurname" placeholder="Nazwisko" required/></td>
+              </tr>
+              <tr>
+                <td>8. PESEL: <input v-model="newPesel" placeholder="PESEL" required/></td>
+              </tr>
+
+              <!-- The End Of Medical Recommendations -->
+              <tr>
+                <td><h3>Wystaw zalecenia: <button type="submit">DODAJ NOWEGO PACJĘTA</button></h3></td>
+              </tr>
+        </form>
+        </tbody>
+      </table>
+      </div> <!--/ .new-->
+
+      <!-- Registered Recommendations -->
+      <div v-for="(post, i) in filteredByLabel" class="post">
+        <h3>Pacjęt:</h3>
+        <p><strong> {{ post.surname }} </strong> {{ post.name }} , PESEL:{{ post.pesel }} </p>
+        <p><bold>{{ post.label }}</bold>, godzina: {{ post.time }}, ilość: {{ post.amount }} </p>
+        <p><small>Pacjęt przebywa na oddziale: {{ post.department }} </small></p>
+      </div>
+  </div> <!--/ .contain-->
+</div> <!--/ .app-->
+
+
+
+<!-- SCRIPTS -->
+  <!-- Main array fith form --> 
+<script src="assets/js.js"></script>
+
+  <!-- Data Picker VUE.js --> 
+<script src="assets/js1.js"></script>
+
+  
+</body>
+</html>
